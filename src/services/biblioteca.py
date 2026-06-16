@@ -46,9 +46,10 @@ class Biblioteca:
             raise ValueError("ERROR: Por favor ingrese un libro valido")
         if socio_que_devuelve is None:
             raise ValueError("ERROR: Por favor seleccione un socio valido.")
-        if libro_para_devolver not in socio_que_devuelve.libros_en_posesion:
+        if libro_para_devolver not in socio_que_devuelve.libros_en_posesion and not libro_para_devolver.disponible:
             raise ValueError("ERROR: Este socio no tiene este libro.")
-        
+        if libro_para_devolver.disponible:
+            raise ValueError("ERROR: Este socio no tiene este libro. El libro se encuentra disponible")
         socio_que_devuelve.libros_en_posesion.remove(libro_para_devolver)
         libro_para_devolver.disponible = True
         print(f"Libro {libro_para_devolver.titulo}devuelto exitosamente por socio {socio_que_devuelve}.")
