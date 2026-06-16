@@ -4,8 +4,9 @@ from models.socio import Socio
 class Biblioteca:
     def __init__(self):
         self.libros: list[Libro] = []
+        self.libros_disponibles: list[Libro] = []
         self.socios: list[Socio] = []
-
+        
     def agregar_libro(self, libro_para_agregar: Libro) -> None:
         if not libro_para_agregar:
             raise ValueError("ERROR: Ingrese un libro valido.")
@@ -52,3 +53,6 @@ class Biblioteca:
         libro_para_devolver.disponible = True
         print(f"Libro {libro_para_devolver.titulo}devuelto exitosamente por socio {socio_que_devuelve}.")
         return None
+    
+    def listar_libros_disponibles(self) -> None:
+        self.libros_disponibles = [libro for libro in self.libros if libro.disponible]
