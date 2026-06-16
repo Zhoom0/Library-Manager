@@ -4,5 +4,5 @@ from models.libro import Libro
 @dataclass
 class Socio:
     nombre: str
-    id: int
+    codigo: int
     libros_en_posesion: list[Libro] = field(default_factory=list)

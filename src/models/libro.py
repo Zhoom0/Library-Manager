@@ -4,5 +4,5 @@ from dataclasses import dataclass
 class Libro:
     titulo: str
     autor: str
-    id: int
+    codigo: int
     disponible: bool = True

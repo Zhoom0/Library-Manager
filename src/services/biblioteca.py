@@ -56,7 +56,7 @@ class Biblioteca:
         print(f"Libro {libro_para_devolver.titulo} devuelto exitosamente por socio {socio_que_devuelve.nombre}.")
         return None
     
-    def listar_libros_disponibles(self) -> list[Libro] | None:
+    def listar_libros_disponibles(self) -> list[Libro]:
         return [libro for libro in self.libros if libro.disponible]
 
     def libros_socio(self, socio_para_revisar: Socio) -> None:
