@@ -56,3 +56,15 @@ class Biblioteca:
     
     def listar_libros_disponibles(self) -> None:
         self.libros_disponibles = [libro for libro in self.libros if libro.disponible]
+
+    def libros_socio(self, socio_para_revisar: Socio) -> None:
+        if socio_para_revisar is None:
+            raise ValueError("ERROR: Ingrese un socio valido.")
+        if socio_para_revisar.libros_en_posesion is None:
+            raise ValueError("ERROR: Este socio no tiene ningún libro en posesion.")
+        print(f"""El socio {socio_para_revisar.nombre} tiene los libros: 
+              {socio_para_revisar.libros_en_posesion[0].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[0].autor}.
+              {socio_para_revisar.libros_en_posesion[1].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[2].autor}.
+              {socio_para_revisar.libros_en_posesion[1].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[2].autor}.""")
+        return None
+    
