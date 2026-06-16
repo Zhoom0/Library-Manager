@@ -7,32 +7,30 @@ class Biblioteca:
         self.socios: list[Socio] = []
 
     def agregar_libro(self, libro_para_agregar: Libro) -> None:
-        if libro_para_agregar:
-            self.libros.append(libro_para_agregar)
-            print("Libro agregado exitosamente.")
-            return None
-        else:
-            print("No se pudo agregar el libro, por favor ingrese un libro valido.")
+        if not libro_para_agregar:
+            raise ValueError("Error: Ingrese un libro valido.")
+        if libro_para_agregar in self.libros:
+            raise ValueError("ERROR: Este libro ya se encuentra en la biblioteca.")
+        self.libros.append(libro_para_agregar)
+        print("Libro agregado exitosamente.")
+        return None
 
     def agregar_socio(self, socio_para_agregar: Socio) -> None:
-        if socio_para_agregar:
-            self.socios.append(socio_para_agregar)
-            print("Socio agregado exitosamente.")
-            return None
-        else:
-            print("No se pudo agregar el socio, por favor ingrese un socio valido.")
+        if not socio_para_agregar:
+            raise ValueError("Error: Ingrese un socio valido.")
+        if socio_para_agregar in self.libros:
+            raise ValueError("ERROR: Este socio ya está registrado en la biblioteca.")
+        self.libros.append(socio_para_agregar)
+        print("Socio registrado exitosamente.")
+        return None
 
     def prestar_libro(self, libro_para_prestar: Libro, socio_para_prestar: Socio) -> None:
         if libro_para_prestar is None:
-            print("Por favor seleccione un libro valido.")
-            return None
+            raise ValueError("Por favor ingrese un libro valido")
         if not libro_para_prestar.disponible:
-            print("ERROR: Este libro ya se encuentra prestado.")
-            return None
+            raise ValueError("ERROR: Este libro ya se encuentra prestado.")
         
         if socio_para_prestar is None:
-            print("Por favor seleccione un socio valido.")
-            return None
+            raise ValueError("Por favor seleccione un socio valido.")
         if libro_para_prestar in socio_para_prestar.libros_en_posesion:
-            print("ERROR: Este socio ya posee ese libro.")
-            return None
+            raise ValueError("ERROR: Este socio ya posee ese libro.")
