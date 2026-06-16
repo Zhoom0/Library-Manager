@@ -33,6 +33,8 @@ class Biblioteca:
             raise ValueError("ERROR: Por favor seleccione un socio valido.")
         if libro_para_prestar in socio_para_prestar.libros_en_posesion:
             raise ValueError("ERROR: Este socio ya posee ese libro.")
+        if len(socio_para_prestar.libros_en_posesion) > 3:
+            raise ValueError("ERROR: Un socio no puede tener mas de 3 libros prestados al mismo tiempo")
         if not libro_para_prestar.disponible:
             raise ValueError("ERROR: Este libro ya se encuentra prestado.")
         
