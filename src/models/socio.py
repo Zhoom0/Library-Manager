@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from libro import Libro
+from models.libro import Libro
 
 @dataclass
 class Socio:
