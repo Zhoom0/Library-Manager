@@ -47,13 +47,13 @@ class Biblioteca:
             raise ValueError("ERROR: Por favor ingrese un libro valido")
         if socio_que_devuelve is None:
             raise ValueError("ERROR: Por favor seleccione un socio valido.")
-        if libro_para_devolver not in socio_que_devuelve.libros_en_posesion and not libro_para_devolver.disponible:
+        if libro_para_devolver not in socio_que_devuelve.libros_en_posesion:
             raise ValueError("ERROR: Este socio no tiene este libro.")
         if libro_para_devolver.disponible:
             raise ValueError("ERROR: Este socio no tiene este libro. El libro se encuentra disponible")
         socio_que_devuelve.libros_en_posesion.remove(libro_para_devolver)
         libro_para_devolver.disponible = True
-        print(f"Libro {libro_para_devolver.titulo}devuelto exitosamente por socio {socio_que_devuelve}.")
+        print(f"Libro {libro_para_devolver.titulo} devuelto exitosamente por socio {socio_que_devuelve.nombre}.")
         return None
     
     def listar_libros_disponibles(self) -> list[Libro] | None:
@@ -64,11 +64,7 @@ class Biblioteca:
             raise ValueError("ERROR: Ingrese un socio valido.")
         if socio_para_revisar.libros_en_posesion == []:
             raise ValueError("ERROR: Este socio no tiene ningún libro en posesion.")
-        try:
-            print(f"""El socio {socio_para_revisar.nombre} tiene los libros: 
-                  {socio_para_revisar.libros_en_posesion[0].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[0].autor}.
-                  {socio_para_revisar.libros_en_posesion[1].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[2].autor}.
-                  {socio_para_revisar.libros_en_posesion[1].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[2].autor}.""")
-        except IndexError:
-            return None
+        for libro in socio_para_revisar.libros_en_posesion:
+            print(f"{libro.titulo}: Escrito por {libro.autor}.")
+        return None
     
