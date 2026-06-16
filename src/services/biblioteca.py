@@ -32,7 +32,7 @@ class Biblioteca:
             raise ValueError("ERROR: Por favor seleccione un socio valido.")
         if libro_para_prestar in socio_para_prestar.libros_en_posesion:
             raise ValueError("ERROR: Este socio ya posee ese libro.")
-        if len(socio_para_prestar.libros_en_posesion) > 3:
+        if len(socio_para_prestar.libros_en_posesion) >= 3:
             raise ValueError("ERROR: Un socio no puede tener mas de 3 libros prestados al mismo tiempo")
         if not libro_para_prestar.disponible:
             raise ValueError("ERROR: Este libro ya se encuentra prestado.")
@@ -62,11 +62,13 @@ class Biblioteca:
     def libros_socio(self, socio_para_revisar: Socio) -> None:
         if socio_para_revisar is None:
             raise ValueError("ERROR: Ingrese un socio valido.")
-        if socio_para_revisar.libros_en_posesion is None:
+        if socio_para_revisar.libros_en_posesion == []:
             raise ValueError("ERROR: Este socio no tiene ningún libro en posesion.")
-        print(f"""El socio {socio_para_revisar.nombre} tiene los libros: 
-              {socio_para_revisar.libros_en_posesion[0].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[0].autor}.
-              {socio_para_revisar.libros_en_posesion[1].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[2].autor}.
-              {socio_para_revisar.libros_en_posesion[1].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[2].autor}.""")
-        return None
+        try:
+            print(f"""El socio {socio_para_revisar.nombre} tiene los libros: 
+                  {socio_para_revisar.libros_en_posesion[0].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[0].autor}.
+                  {socio_para_revisar.libros_en_posesion[1].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[2].autor}.
+                  {socio_para_revisar.libros_en_posesion[1].titulo}: Escrito por {socio_para_revisar.libros_en_posesion[2].autor}.""")
+        except IndexError:
+            return None
     
