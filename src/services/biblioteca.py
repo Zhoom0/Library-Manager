@@ -20,9 +20,9 @@ class Biblioteca:
     def agregar_socio(self, socio_para_agregar: Socio) -> None:
         if not socio_para_agregar:
             raise ValueError("ERROR: Ingrese un socio valido.")
-        if socio_para_agregar in self.libros:
+        if socio_para_agregar in self.socios:
             raise ValueError("ERROR: Este socio ya está registrado en la biblioteca.")
-        self.libros.append(socio_para_agregar)
+        self.socios.append(socio_para_agregar)
         print("Socio registrado exitosamente.")
         return None
 
